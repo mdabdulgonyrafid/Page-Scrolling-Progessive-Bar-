@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scroll Progress Bar</title>
+  <style>
+    /* Progress bar styling */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 5px;
+      background: #4caf50;
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.25s ease;
+    }
+
+    /* Just to create scrollable content */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .content {
+      height: 2000px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Content -->
+  <div class="content">
+    <h1>Scroll Down</h1>
+    <p>Scroll this page to see the scroll progress bar at the top.</p>
+  </div>
+
+  <!-- Script for progress calculation -->
+  <script>
+    window.onscroll = function() {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = (scrollTop / scrollHeight) * 100;
+
+      document.getElementById("progress-bar").style.width = scrollPercent + "%";
+    };
+  </script>
+
+</body>
+</html>
